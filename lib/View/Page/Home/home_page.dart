@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:hk_shield/Data/Models/dropdown_model.dart";
+import "package:hk_shield/View/Page/Home/quick_menu.dart";
 import "package:hk_shield/View/Widget/custom_carousel.dart";
 import "package:hk_shield/View/Widget/custom_dropdown.dart";
 import "package:hk_shield/View/Widget/custom_scaffold.dart";
@@ -100,7 +101,9 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Column(
-                  children: [ CustomDropdown(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomDropdown(
                       hint: 'Divisi',
                       value: coba[0].id,
                       items: coba,
@@ -111,11 +114,21 @@ class _HomePageState extends State<HomePage> {
                         items: coba,
                         value: coba[0].id,
                         validatorLabel: 'input data'
-                    )
+                    ),
+                    SizedBox(height: 20,),
+                    Text(
+                      'QHSSE Report',
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20
+                      ),
+                    ),
+                    SizedBox(height: 10,),
+                    QuickMenu()
                   ]
               ),
             ),
-
           ],
         ),
       ),

@@ -23,13 +23,12 @@ class CustomDropdown extends StatelessWidget {
             fontWeight: FontWeight.w600
           ),
         ),
-        const SizedBox(height: 4,),
         DropdownButtonFormField2<String>(
             isExpanded: true,
             decoration: InputDecoration(
               prefixIcon: Container(
                 width: 65,
-                height: 63,
+                height: 40,
                 decoration: BoxDecoration(
                   color: Color(0xffECF0F4),
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(40), bottomLeft: Radius.circular(40))
@@ -41,7 +40,7 @@ class CustomDropdown extends StatelessWidget {
                     Icon(BootstrapIcons.building)
                 ),
               ),
-              contentPadding: EdgeInsets.symmetric(vertical: 20),
+              contentPadding: EdgeInsets.symmetric(vertical: 10),
               border:OutlineInputBorder(
                 borderRadius:BorderRadius.circular(30),
                 borderSide: BorderSide(

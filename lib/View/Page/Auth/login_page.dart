@@ -99,7 +99,6 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: EdgeInsets.only(top: 70),
                 child: Image.asset('assets/logoHK.png',)
-                ,
               )
             ],
           ),

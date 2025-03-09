@@ -23,7 +23,7 @@ class _CustomCarouselState extends State<CustomCarousel> {
       alignment: Alignment.center,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 35, right: 38, top: 15),
+          padding: const EdgeInsets.only(left: 35, right: 38, top: 10),
           child: CarouselSlider(
               items: images.map((image) {
                 return ClipRRect(
