@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hk_shield/View/Page/Home/home_page.dart';
 import 'package:hk_shield/View/Widget/custom_auth_background.dart';
 import 'package:hk_shield/View/Widget/text_field.dart';
 
@@ -64,6 +65,12 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 20,),
               GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                      context, 
+                      MaterialPageRoute(builder: (context) => HomePage())
+                  );
+                },
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
