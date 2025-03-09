@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   icons_plus: ^4.0.0
   bootstrap_icons: ^1.8.1
+  carousel_slider: ^5.0.0
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +65,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/slider1.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

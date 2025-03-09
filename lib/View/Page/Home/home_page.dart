@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:hk_shield/View/Widget/custom_carousel.dart";
 import "package:hk_shield/View/Widget/custom_scaffold.dart";
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 
@@ -91,9 +92,7 @@ class _HomePageState extends State<HomePage> {
                 ]
               ),
             ),
-            Container(
-
-            )
+            CustomCarousel()
           ],
         ),
       ),
