@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:hk_shield/Data/Models/dropdown_model.dart";
 import "package:hk_shield/View/Page/Home/quick_menu.dart";
+import "package:hk_shield/View/Widget/bottom_navigation_custom.dart";
 import "package:hk_shield/View/Widget/custom_carousel.dart";
 import "package:hk_shield/View/Widget/custom_dropdown.dart";
 import "package:hk_shield/View/Widget/custom_scaffold.dart";
@@ -16,11 +17,54 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<DropdownItem> coba = [DropdownItem(id: 1, label: 'khoi'), DropdownItem(id: 2, label: 'nasid')];
 
+
+  final List<Widget> _pages = [
+    const Center(child: Text('Home Page')),
+    const Center(child: Text('Knowledge Page')),
+    const Center(child: Text('To Do List Page')),
+    const Center(child: Text('My Action Page')),
+    const Center(child: Text('Profile Page')),
+  ];
+  int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
       isLeading: false,
       icon2: BootstrapIcons.hand_index_thumb,
+      bottomNavBar: BottomNavigationBar(
+        backgroundColor: Color(0xFF0A47A9),
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white70,
+        currentIndex: _selectedIndex,
+        type: BottomNavigationBarType.fixed,
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(BootstrapIcons.house),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(BootstrapIcons.book),
+            label: 'Knowledge',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(BootstrapIcons.card_checklist),
+            label: 'To Do List',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(BootstrapIcons.bell),
+            label: 'My Action',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(BootstrapIcons.person),
+            label: 'Profile',
+          ),
+        ],
+      ),
       children: SingleChildScrollView(
         child: Column(
           children: [
@@ -125,7 +169,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     SizedBox(height: 10,),
-                    QuickMenu()
+                    QuickMenu(),
+                    SizedBox(height: 30,)
                   ]
               ),
             ),

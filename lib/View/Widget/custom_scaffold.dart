@@ -7,7 +7,8 @@ class CustomScaffold extends StatelessWidget {
   final IconData? icon1;
   final IconData? icon2;
   final Widget? children;
-  const CustomScaffold({super.key, this.isLeading, this.icon1, this.icon2, this.children, this.title});
+  final Widget? bottomNavBar;
+  const CustomScaffold({super.key, this.isLeading, this.icon1, this.icon2, this.children, this.title, this.bottomNavBar});
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +36,7 @@ class CustomScaffold extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: bottomNavBar,
       body: children,
     );
   }

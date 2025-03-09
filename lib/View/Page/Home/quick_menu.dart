@@ -33,7 +33,7 @@ class _QuickMenuState extends State<QuickMenu> {
         route: null
     ),
     MenuItemModel(
-        label: 'Enviromental\nRepor',
+        label: 'Enviromental\nReport',
         image: 'assets/enviromental_report.png',
         route: null
     ),
