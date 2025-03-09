@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
+import "package:hk_shield/Data/Models/dropdown_model.dart";
 import "package:hk_shield/View/Widget/custom_carousel.dart";
+import "package:hk_shield/View/Widget/custom_dropdown.dart";
 import "package:hk_shield/View/Widget/custom_scaffold.dart";
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 
@@ -11,10 +13,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<DropdownItem> coba = [DropdownItem(id: 1, label: 'khoi'), DropdownItem(id: 2, label: 'nasid')];
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      isLeading: true,
+      isLeading: false,
       icon2: BootstrapIcons.hand_index_thumb,
       children: SingleChildScrollView(
         child: Column(
@@ -92,7 +96,26 @@ class _HomePageState extends State<HomePage> {
                 ]
               ),
             ),
-            CustomCarousel()
+            CustomCarousel(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                  children: [ CustomDropdown(
+                      hint: 'Divisi',
+                      value: coba[0].id,
+                      items: coba,
+                      validatorLabel: 'input data'
+                    ),
+                    CustomDropdown(
+                        hint: 'Proyek',
+                        items: coba,
+                        value: coba[0].id,
+                        validatorLabel: 'input data'
+                    )
+                  ]
+              ),
+            ),
+
           ],
         ),
       ),

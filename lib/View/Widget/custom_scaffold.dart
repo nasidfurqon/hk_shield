@@ -2,11 +2,12 @@ import "package:flutter/material.dart";
 import "package:bootstrap_icons/bootstrap_icons.dart";
 
 class CustomScaffold extends StatelessWidget {
+  final String? title;
   final bool? isLeading;
   final IconData? icon1;
   final IconData? icon2;
   final Widget? children;
-  const CustomScaffold({super.key, this.isLeading, this.icon1, this.icon2, this.children});
+  const CustomScaffold({super.key, this.isLeading, this.icon1, this.icon2, this.children, this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class CustomScaffold extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('data', style: TextStyle(color : Colors.white),),
+              Text(title ?? '', style: TextStyle(color : Colors.white),),
               Row(
                 children: [
                   Icon(icon1, size: 30,),

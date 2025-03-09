@@ -38,6 +38,8 @@ dependencies:
   icons_plus: ^4.0.0
   bootstrap_icons: ^1.8.1
   carousel_slider: ^5.0.0
+  dropdown_button2: ^2.3.9
+
 
 dev_dependencies:
   flutter_test:
