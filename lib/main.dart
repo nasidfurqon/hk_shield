@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hk_shield/View/Page/Auth/login_page.dart';
-import 'package:hk_shield/View/Widget/custom_auth_background.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
+// TODO 0: Penamaan/struktur folder harap diperhatikan ya seperti pada contoh
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

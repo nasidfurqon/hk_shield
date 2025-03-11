@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:hk_shield/Data/Models/menu_model.dart';
 
@@ -11,52 +9,34 @@ class QuickMenu extends StatefulWidget {
 }
 
 class _QuickMenuState extends State<QuickMenu> {
+  // TODO 5: static data/config seperti ini lebih baik disimpan pada file terpisah, dalam file datasource atau config
   List<MenuItemModel> generateMenu = [
     MenuItemModel(
-        label: 'Dashboard',
-        image: 'assets/dashboard.png',
-        route: null
-    ),
+        label: 'Dashboard', image: 'assets/dashboard.png', route: null),
     MenuItemModel(
         label: 'Quality\nInspection',
         image: 'assets/quality_inspection.png',
-        route: null
-    ),
+        route: null),
     MenuItemModel(
-        label: 'HSSE\nPatrol',
-        image: 'assets/hsse_patrol.png',
-        route: null
-    ),
+        label: 'HSSE\nPatrol', image: 'assets/hsse_patrol.png', route: null),
     MenuItemModel(
         label: 'QHSSE\nCommunication',
         image: 'assets/qhsse_communication.png',
-        route: null
-    ),
+        route: null),
     MenuItemModel(
         label: 'Enviromental\nReport',
         image: 'assets/enviromental_report.png',
-        route: null
-    ),
+        route: null),
     MenuItemModel(
-        label: 'Fit To Work',
-        image: 'assets/fit_to_work_1.png',
-        route: null
-    ),
+        label: 'Fit To Work', image: 'assets/fit_to_work_1.png', route: null),
     MenuItemModel(
-        label: 'Work\nPermit',
-        image: 'assets/work_permit.png',
-        route: null
-    ),
-    MenuItemModel(
-        label: 'RTM',
-        image: 'assets/rtm.png',
-        route: null
-    ),
+        label: 'Work\nPermit', image: 'assets/work_permit.png', route: null),
+    MenuItemModel(label: 'RTM', image: 'assets/rtm.png', route: null),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Wrap(
         spacing: 30,
@@ -67,25 +47,31 @@ class _QuickMenuState extends State<QuickMenu> {
     );
   }
 
-  Widget _buildMenu(MenuItemModel item){
+  Widget _buildMenu(MenuItemModel item) {
     return SizedBox(
-      width:  MediaQuery.of(context).size.width / 7,
+      // FIXME: lihat pada TODO 1
+      width: MediaQuery.of(context).size.width / 7,
       child: Column(
         children: [
-          const SizedBox(height: 5, ),
-          Stack(
-            children: [
-              Image.asset('assets/bg_menu.png'),
-              SafeArea(
-                  child:
-                    Padding(padding: EdgeInsets.only(left: 10, top: 10),
-                      child:
-                        Image.asset(item.image, width: 40,)
-                  ,)
-              )
-            ]
+          const SizedBox(
+            height: 5,
           ),
-          const SizedBox(height: 5,),
+          Stack(children: [
+            Image.asset('assets/bg_menu.png'),
+            SafeArea(
+                child: Padding(
+              padding: EdgeInsets.only(left: 10, top: 10),
+              child: Image.asset(
+                item.image,
+                width: 40,
+              ),
+            ))
+          ]),
+          // FIXME: lihat pada TODO 4
+
+          const SizedBox(
+            height: 5,
+          ),
           SizedBox(
             width: double.infinity,
             child: Text(
