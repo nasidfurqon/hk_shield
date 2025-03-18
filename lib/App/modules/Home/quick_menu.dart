@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hk_shield/Data/Models/menu_model.dart';
+import 'package:hk_shield/App/data/models/menu_model.dart';
+import 'package:hk_shield/Common/Extensions/gaps_extension.dart';
+import 'package:hk_shield/Common/Extensions/media_query_extension.dart';
+
+import '../../../Config/main_config.dart';
 
 class QuickMenu extends StatefulWidget {
   const QuickMenu({super.key});
@@ -9,31 +13,7 @@ class QuickMenu extends StatefulWidget {
 }
 
 class _QuickMenuState extends State<QuickMenu> {
-  // TODO 5: static data/config seperti ini lebih baik disimpan pada file terpisah, dalam file datasource atau config
-  List<MenuItemModel> generateMenu = [
-    MenuItemModel(
-        label: 'Dashboard', image: 'assets/dashboard.png', route: null),
-    MenuItemModel(
-        label: 'Quality\nInspection',
-        image: 'assets/quality_inspection.png',
-        route: null),
-    MenuItemModel(
-        label: 'HSSE\nPatrol', image: 'assets/hsse_patrol.png', route: null),
-    MenuItemModel(
-        label: 'QHSSE\nCommunication',
-        image: 'assets/qhsse_communication.png',
-        route: null),
-    MenuItemModel(
-        label: 'Enviromental\nReport',
-        image: 'assets/enviromental_report.png',
-        route: null),
-    MenuItemModel(
-        label: 'Fit To Work', image: 'assets/fit_to_work_1.png', route: null),
-    MenuItemModel(
-        label: 'Work\nPermit', image: 'assets/work_permit.png', route: null),
-    MenuItemModel(label: 'RTM', image: 'assets/rtm.png', route: null),
-  ];
-
+  // TODO 5: static data/config seperti ini lebih baik disimpan pada file terpisah, dalam file datasource atau config (DONE)
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -42,15 +22,15 @@ class _QuickMenuState extends State<QuickMenu> {
         spacing: 30,
         runSpacing: 15,
         alignment: WrapAlignment.center,
-        children: generateMenu.map((item) => _buildMenu(item)).toList(),
+        children: QuickMenuData.generateMenu.map((item) => _buildMenu(item)).toList(),
       ),
     );
   }
 
   Widget _buildMenu(MenuItemModel item) {
     return SizedBox(
-      // FIXME: lihat pada TODO 1
-      width: MediaQuery.of(context).size.width / 7,
+      // FIXME: lihat pada TODO 1 (DONE)
+      width: context.screenWidth / 7,
       child: Column(
         children: [
           const SizedBox(
@@ -67,11 +47,8 @@ class _QuickMenuState extends State<QuickMenu> {
               ),
             ))
           ]),
-          // FIXME: lihat pada TODO 4
-
-          const SizedBox(
-            height: 5,
-          ),
+          // FIXME: lihat pada TODO 4 (DONE)
+          5.gH,
           SizedBox(
             width: double.infinity,
             child: Text(

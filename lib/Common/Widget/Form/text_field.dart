@@ -4,9 +4,10 @@ class CustomTextField extends StatelessWidget {
   final String? label;
   final String? hint;
   final bool? obscureText;
-  final Icon? icon;
+  final IconData? icon;
+  final double? size;
   final TextEditingController? controller;
-  const CustomTextField({super.key, this.label, this.hint, this.obscureText, this.controller, this.icon});
+  const CustomTextField({super.key, this.label, this.hint, this.obscureText, this.controller, this.icon, this.size});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,10 @@ class CustomTextField extends StatelessWidget {
       decoration: InputDecoration(
           prefixIcon: Padding(
             padding: EdgeInsets.only(left: 30, right: 10),
-            child: icon
+            child: Icon(
+              icon,
+              size: size,
+            )
           ),
           labelText: label,
           labelStyle: TextStyle(

@@ -17,7 +17,7 @@
 //       body: _pages[_selectedIndex],
 //       bottomNavigationBar: BottomNavigationBar(
 //         type: BottomNavigationBarType.fixed,
-//         backgroundColor: const Color(0xFF0A47A9), // Warna biru
+//         backgroundColor: const Color(0xFF0A47A9),
 //         selectedItemColor: Colors.white,
 //         unselectedItemColor: Colors.white70,
 //         currentIndex: _selectedIndex,

@@ -1,55 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:hk_shield/View/Page/Home/home_page.dart';
-import 'package:hk_shield/View/Widget/custom_auth_background.dart';
-import 'package:hk_shield/View/Widget/text_field.dart';
+import 'package:hk_shield/App/modules/Auth/Controller/action_controller.dart';
+import 'package:hk_shield/App/modules/Home/home_page.dart';
+import 'package:hk_shield/Common/Extensions/gaps_extension.dart';
+import 'package:hk_shield/Common/Widget/Custom/custom_background.dart';
+import 'package:hk_shield/Common/Widget/Form/text_field.dart';
+import '../../../Common/Widget/Form/form_builder.dart';
+import '../../../Common/enums.dart';
+import '../../../Config/form_config.dart';
+import  'package:get/get.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
-
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
+class LoginPage extends GetView<AuthFormController> {
+  LoginPage({Key? key}) : super(key: key);
   bool rememberUser = false;
   @override
   Widget build(BuildContext context) {
-    // TODO 2: Abstraksi widget untuk base layout/page seperti ini sudah bagus namun masih terlalu spesifik
+    // TODO 2: Abstraksi widget untuk base layout/page seperti ini sudah bagus namun masih terlalu spesifik (DONE)
     // FIXME: Coba nantinya ubah menjadi lebih umum dan reusable
-    return CustomAuthBackground(
+    return CustomBackground(
+      imagePath: 'assets/background_auth.png',
         child: SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(
-            height: 20,
-          ),
+          20.gH,
           // TODO 3: Ini untuk inputnya belum dibuat dalam bentuk config
           // FIXME: Coba buat untuk input/form fieldnya dalam bentuk config seperti pada contoh repo yang sudah diberikan
           CustomTextField(
             label: "Username",
             hint: "Username",
-            icon: Icon(
+            icon :
               Icons.account_circle_outlined,
               size: 30,
-            ),
           ),
           // TODO 4
-          // FIXME: apabila spacing antar widget sama pada widget column dan row bisa menggunakan atribut spacing saja agar lebih efisien
-          SizedBox(
-            height: 20,
-          ),
+          // FIXME: apabila spacing antar widget sama pada widget column dan row bisa menggunakan atribut spacing saja agar lebih efisien (DONE)
+          20.gH,
           CustomTextField(
             label: "Password",
             hint: "Password",
-            icon: Icon(
+            icon:
               Icons.lock_outline,
               size: 30,
-            ),
             obscureText: true,
           ),
-          SizedBox(
-            height: 20,
-          ),
+          20.gH,
           Row(
             children: [
               Expanded(
@@ -60,9 +53,9 @@ class _LoginPageState extends State<LoginPage> {
                       onChanged: (bool? value) {
                         // TODO 6: Ini bisa menggunakan state management agar lebih efisien
                         // FIXME: Consider untuk coba state management BLoC
-                        setState(() {
-                          rememberUser = value!;
-                        });
+                        // setState(() {
+                        //   rememberUser = value!;
+                        // });
                       },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
@@ -83,9 +76,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ],
           ),
-          SizedBox(
-            height: 20,
-          ),
+          20.gH,
           GestureDetector(
               onTap: () {
                 Navigator.push(context,

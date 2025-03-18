@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hk_shield/Common/Extensions/media_query_extension.dart';
 
-class CustomAuthBackground extends StatefulWidget {
+class CustomBackground extends StatefulWidget {
   final Widget? child;
-  const CustomAuthBackground({super.key, this.child});
+  final String imagePath;
+  const CustomBackground({super.key, this.child,required this.imagePath});
 
   @override
-  State<CustomAuthBackground> createState() => _CustomAuthBackgroundState();
+  State<CustomBackground> createState() => _CustomBackground();
 }
 
-class _CustomAuthBackgroundState extends State<CustomAuthBackground> {
+class _CustomBackground extends State<CustomBackground> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +23,7 @@ class _CustomAuthBackgroundState extends State<CustomAuthBackground> {
       body: Stack(
         children: [
           Image.asset(
-            'assets/background_auth.png',
+            widget.imagePath,
             fit: BoxFit.cover,
             height: double.infinity,
             width: double.infinity,
@@ -31,10 +33,10 @@ class _CustomAuthBackgroundState extends State<CustomAuthBackground> {
             //   padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Container(
               margin: EdgeInsets.only(
-                  // TODO 1: ini MediaQuery better dibuat extension function dari BuildContext, karena akan sering dipaka
+                  // TODO 1: ini MediaQuery better dibuat extension function dari BuildContext, karena akan sering dipaka (DONE)
                   // EXAMPLE: context.screenWidth
                   // REF: https://dart.dev/language/extension-methods
-                  top: MediaQuery.of(context).size.height * 0.35,
+                  top: context.screenHeight * 0.35,
                   left: 30,
                   right: 30),
               child: widget.child,

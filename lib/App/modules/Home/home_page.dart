@@ -1,10 +1,11 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import "package:flutter/material.dart";
-import "package:hk_shield/Data/Models/dropdown_model.dart";
-import "package:hk_shield/View/Page/Home/quick_menu.dart";
-import "package:hk_shield/View/Widget/custom_carousel.dart";
-import "package:hk_shield/View/Widget/custom_dropdown.dart";
-import "package:hk_shield/View/Widget/custom_scaffold.dart";
+import "package:hk_shield/App/data/models/dropdown_model.dart";
+import "package:hk_shield/App/modules/Home/quick_menu.dart";
+import "package:hk_shield/Common/Widget/Form/custom_dropdown.dart";
+
+import "../../../Common/Widget/Custom/custom_carousel.dart";
+import "../../../Common/Widget/Custom/custom_scaffold.dart";
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,22 +20,16 @@ class _HomePageState extends State<HomePage> {
     DropdownItem(id: 2, label: 'nasid')
   ];
 
-  // FIXME: Lihat TODO 5
-  final List<Widget> _pages = [
-    const Center(child: Text('Home Page')),
-    const Center(child: Text('Knowledge Page')),
-    const Center(child: Text('To Do List Page')),
-    const Center(child: Text('My Action Page')),
-    const Center(child: Text('Profile Page')),
-  ];
+  // FIXME: Lihat TODO 5(DONE)
+
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
       isLeading: false,
-      // TODO 7: Penamaan atribut icon1 dan icon2 lebih baik diganti dengan lebih deskriptif
+      // TODO 7: Penamaan atribut icon1 dan iconEnd lebih baik diganti dengan lebih deskriptif(DONE)
       // CONTOH iconStart dan iconEnd
-      icon2: BootstrapIcons.hand_index_thumb,
+      iconEnd: BootstrapIcons.hand_index_thumb,
       bottomNavBar: BottomNavigationBar(
         backgroundColor: Color(0xFF0A47A9),
         selectedItemColor: Colors.white,
