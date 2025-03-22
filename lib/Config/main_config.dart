@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:hk_shield/App/modules/ProdukTidakSesuai/pts_page.dart';
 import '../App/data/models/menu_model.dart';
 
 class PageNameData{
@@ -15,7 +16,9 @@ class PageNameData{
 class QuickMenuData{
   static List<MenuItemModel> generateMenu = [
     MenuItemModel(
-        label: 'Dashboard', image: 'assets/dashboard.png', route: null),
+        label: 'Dashboard',
+        image: 'assets/dashboard.png',
+        route: const ProdukTidakSesuaiPage()),
     MenuItemModel(
         label: 'Quality\nInspection',
         image: 'assets/quality_inspection.png',

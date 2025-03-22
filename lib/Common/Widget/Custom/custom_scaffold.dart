@@ -24,7 +24,13 @@ class CustomScaffold extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title ?? '', style: TextStyle(color : Colors.white),),
+              Text(
+                title ?? '',
+                style:
+                TextStyle(
+                  color : Colors.white,
+                  fontSize: 20
+                ), ),
               Row(
                 children: [
                   Icon(iconStart, size: 30,),

@@ -23,7 +23,7 @@ class LoginPage extends GetView<AuthFormController> {
         children: [
           20.gH,
           // TODO 3: Ini untuk inputnya belum dibuat dalam bentuk config
-          // FIXME: Coba buat untuk input/form fieldnya dalam bentuk config seperti pada contoh repo yang sudah diberikan
+            // FIXME: Coba buat untuk input/form fieldnya dalam bentuk config seperti pada contoh repo yang sudah diberikan
           CustomTextField(
             label: "Username",
             hint: "Username",
