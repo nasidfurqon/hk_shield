@@ -22,6 +22,23 @@ class _ProdukTidakSesuaiPageState extends State<ProdukTidakSesuaiPage> {
       isLeading: true,
       iconStart: BootstrapIcons.funnel,
       iconEnd: BootstrapIcons.question_circle_fill,
+      bottomNavBar: Container(
+        padding: EdgeInsets.all(16),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Color(0xff224596),
+            minimumSize: Size(double.infinity, 50)
+          ),
+          onPressed: () {},
+          child: Text(
+              '+ Produk Tidak Sesuai',
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.white
+            ),
+          ),
+        ),
+      ),
       children: Padding(
         padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 18),
         child: Column(
@@ -30,10 +47,11 @@ class _ProdukTidakSesuaiPageState extends State<ProdukTidakSesuaiPage> {
             20.gH,
             Column(
               children: _buildCard(),
-            )
+            ),
           ],
         ),
-      )
+      ),
+
     );
   }
 
