@@ -6,8 +6,8 @@ class PegawaiTidakSesuaiModel{
       "Pekerjaan": "Pekerjaan Gedung",
       "Penyebab": 'Penyebab Bahan',
       "Nomor": "IKN3A/GST/IV/001",
-      "Kriteria": "Ringan",
-      "image": "assets/ptsImage.jpg",
+      "Kriteria": "Kriteria Ringan",
+      "image": "assets/ptsImage.png",
       "Status": true
     },
     {
@@ -16,8 +16,8 @@ class PegawaiTidakSesuaiModel{
       "Pekerjaan": "Pekerjaan Gedung",
       "Penyebab": 'Penyebab Bahan',
       "Nomor": "IKN3A/GST/IV/001",
-      "Kriteria": "Ringan",
-      "image": "assets/background_auth.png",
+      "Kriteria": "Kriteria Berat",
+      "image": "assets/ptsImage.png",
       "Status": false
     },
   ];
