@@ -1,6 +1,7 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:hk_shield/App/data/models/pts_model.dart';
+import 'package:hk_shield/App/modules/ProdukTidakSesuai/add_pts_page.dart';
 import 'package:hk_shield/Common/Extensions/gaps_extension.dart';
 import 'package:hk_shield/Common/Widget/Custom/custom_scaffold.dart';
 
@@ -29,7 +30,9 @@ class _ProdukTidakSesuaiPageState extends State<ProdukTidakSesuaiPage> {
             backgroundColor: Color(0xff224596),
             minimumSize: Size(double.infinity, 50)
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> AddProdukTidakSesuaiPage()));
+          },
           child: Text(
               '+ Produk Tidak Sesuai',
             style: TextStyle(

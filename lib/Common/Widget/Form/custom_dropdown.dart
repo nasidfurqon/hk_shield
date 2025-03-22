@@ -2,6 +2,7 @@ import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:hk_shield/App/data/models/dropdown_model.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:hk_shield/Common/Extensions/gaps_extension.dart';
 class CustomDropdown extends StatelessWidget {
   final String? label;
   final String hint;
@@ -9,7 +10,9 @@ class CustomDropdown extends StatelessWidget {
   final List<DropdownItem> items;
   final String validatorLabel;
   final Function? onChanged;
-  const CustomDropdown({super.key, this.label, required this.hint, this.value, required this.items, required this.validatorLabel, this.onChanged});
+  final bool isHome;
+  final IconData icon;
+  const CustomDropdown({super.key, this.label, required this.hint, this.value, required this.items, required this.validatorLabel, this.onChanged, required this.isHome, required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -19,25 +22,26 @@ class CustomDropdown extends StatelessWidget {
         Text(
           label ?? '',
           style: const TextStyle(
-            fontSize:12,
+            fontSize:16,
             fontWeight: FontWeight.w600
           ),
         ),
+        10.gH,
         DropdownButtonFormField2<String>(
             isExpanded: true,
             decoration: InputDecoration(
               prefixIcon: Container(
-                width: 65,
+                width: isHome ? 65 : 1,
                 height: 40,
-                decoration: BoxDecoration(
+                decoration: isHome? BoxDecoration(
                   color: Color(0xffECF0F4),
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(40), bottomLeft: Radius.circular(40))
-                ),
+                ) : null,
                 child:
                 Padding(
                     padding: EdgeInsets.only(left: 25, right: 20),
                     child:
-                    Icon(BootstrapIcons.building)
+                    Icon(icon)
                 ),
               ),
               contentPadding: EdgeInsets.symmetric(vertical: 10),
@@ -79,14 +83,14 @@ class CustomDropdown extends StatelessWidget {
             padding: EdgeInsets.only(right: 20),
           ),
           value: value.toString(),
-          iconStyleData: const IconStyleData(
-            icon: Icon(
-              Icons.keyboard_arrow_down,
-              size: 30,
-              color: Colors.black,
-            ),
-            iconSize: 24,
-          ),
+          iconStyleData: isHome ? const IconStyleData(
+              icon: Icon(
+                Icons.keyboard_arrow_down,
+                size: 30,
+                color: Colors.black,
+              ),
+              iconSize: 24,
+            ) : IconStyleData(icon: SizedBox.shrink()),
           dropdownStyleData: DropdownStyleData(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(14),

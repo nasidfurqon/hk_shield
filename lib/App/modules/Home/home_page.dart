@@ -145,11 +145,15 @@ class _HomePageState extends State<HomePage> {
                         hint: 'Divisi',
                         value: coba[0].id,
                         items: coba,
+                        isHome: true,
+                        icon: BootstrapIcons.building,
                         validatorLabel: 'input data'),
                     CustomDropdown(
                         hint: 'Proyek',
                         items: coba,
                         value: coba[0].id,
+                        isHome: true,
+                        icon: BootstrapIcons.building,
                         validatorLabel: 'input data'),
                     SizedBox(
                       height: 20,

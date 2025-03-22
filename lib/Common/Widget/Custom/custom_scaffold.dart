@@ -29,7 +29,7 @@ class CustomScaffold extends StatelessWidget {
                 style:
                 TextStyle(
                   color : Colors.white,
-                  fontSize: 20
+                  fontSize: 16
                 ), ),
               Row(
                 children: [

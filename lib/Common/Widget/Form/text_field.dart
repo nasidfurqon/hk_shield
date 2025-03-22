@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hk_shield/Common/Extensions/gaps_extension.dart';
 
 class CustomTextField extends StatelessWidget {
   final String? label;
@@ -60,3 +61,53 @@ class CustomTextField extends StatelessWidget {
     );
   }
 }
+
+class CustomTextFieldWithLabel extends StatelessWidget {
+  final String label;
+  final String hint;
+  final TextEditingController controller;
+
+  const CustomTextFieldWithLabel({super.key, required this.controller, required this.label, required this.hint});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        4.gH,
+        TextField(
+          controller: controller,
+          maxLines: 4,
+          decoration: InputDecoration(
+            hintText: hint,
+            hintStyle: TextStyle(color: Colors.grey.shade400),
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 12,
+              horizontal: 16,
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: Colors.grey.shade300),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: Colors.grey.shade300),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(color: Colors.blue, width: 2),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
