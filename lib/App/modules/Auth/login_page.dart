@@ -15,6 +15,8 @@ class LoginPage extends GetView<AuthFormController> {
         imagePath: 'assets/background_auth.png',
         child: SingleChildScrollView(
           child: Column(
+            // TODO: Kayak gini buat spacing lebih konsisten, spacing extension dipake kalo spacingnya beda2
+            spacing: 0,
             children: [
               20.gH,
               // TODO 3: Ini untuk inputnya belum dibuat dalam bentuk config
@@ -25,7 +27,7 @@ class LoginPage extends GetView<AuthFormController> {
                 icon: Icons.account_circle_outlined,
                 size: 30,
               ),
-              // TODO: kalo spacingnya sama make atribut spacing dari Column/Rownya aja
+              // TODO: kalo spacingnya sama satu widget make atribut spacing dari Column/Rownya aja
               20.gH,
               CustomTextField(
                 label: "Password",

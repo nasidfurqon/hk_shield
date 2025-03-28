@@ -129,6 +129,7 @@ class _DetailProdukTidakSesuaiState extends State<DetailProdukTidakSesuai> {
                     ],
                   ),
                   20.gH,
+                  // kalau yg reptisi gni bikin configan aja nanti map ke widget
                   CustomText(label: 'Deskripsi', text: produk['Deskripsi'], divider: true,),
                   10.gH,
                   CustomText(label: 'Jenis Pekerjaan', text: produk['jenisPekerjaan'], divider: true,),
