@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hk_shield/App/data/models/menu_model.dart';
 import 'package:hk_shield/Common/Extensions/gaps_extension.dart';
 import 'package:hk_shield/Common/Extensions/media_query_extension.dart';
 
@@ -13,7 +12,6 @@ class QuickMenu extends StatefulWidget {
 }
 
 class _QuickMenuState extends State<QuickMenu> {
-  // TODO 5: static data/config seperti ini lebih baik disimpan pada file terpisah, dalam file datasource atau config (DONE)
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,20 +20,19 @@ class _QuickMenuState extends State<QuickMenu> {
         spacing: 30,
         runSpacing: 15,
         alignment: WrapAlignment.center,
-        children: QuickMenuData.generateMenu.map((item) =>
-            BuildMenu(
-              label: item.label,
-              image: item.image,
-              route: item.route,
-            )).toList(),
+        children: QuickMenuData.generateMenu
+            .map((item) => BuildMenu(
+                  label: item.label,
+                  image: item.image,
+                  route: item.route,
+                ))
+            .toList(),
       ),
     );
   }
-
-
 }
 
-class BuildMenu extends StatelessWidget{
+class BuildMenu extends StatelessWidget {
   final String label;
   final String image;
   final Widget? route;
@@ -45,20 +42,19 @@ class BuildMenu extends StatelessWidget{
     required this.label,
     required this.image,
     this.route,
-  }): super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        if(route != null){
-          Navigator.push(context, MaterialPageRoute(builder: (context){
+      onTap: () {
+        if (route != null) {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
             return route!;
           }));
         }
       },
       child: SizedBox(
-        // FIXME: lihat pada TODO 1 (DONE)
         width: context.screenWidth / 7,
         child: Column(
           children: [
@@ -69,14 +65,13 @@ class BuildMenu extends StatelessWidget{
               Image.asset('assets/bg_menu.png'),
               SafeArea(
                   child: Padding(
-                    padding: EdgeInsets.only(left: 10, top: 10),
-                    child: Image.asset(
-                      image,
-                      width: 40,
-                    ),
-                  ))
+                padding: EdgeInsets.only(left: 10, top: 10),
+                child: Image.asset(
+                  image,
+                  width: 40,
+                ),
+              ))
             ]),
-            // FIXME: lihat pada TODO 4 (DONE)
             5.gH,
             SizedBox(
               width: double.infinity,
@@ -86,7 +81,8 @@ class BuildMenu extends StatelessWidget{
                 softWrap: true,
                 maxLines: 2,
                 overflow: TextOverflow.visible,
-                style: const TextStyle(fontSize: 8, fontWeight: FontWeight.w500),
+                style:
+                    const TextStyle(fontSize: 8, fontWeight: FontWeight.w500),
               ),
             ),
           ],
@@ -94,6 +90,4 @@ class BuildMenu extends StatelessWidget{
       ),
     );
   }
-
-
 }

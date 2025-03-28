@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
+// TODO: ubah jadi BLOC nanti ya modelnya BLOC kurleb nanti bkal kayak MVVM
 class AuthFormController extends GetxController {
   @override
   void onInit() {
@@ -23,7 +24,5 @@ class AuthFormController extends GetxController {
       "username": form.currentState!.fields['username']!.value,
       "password": form.currentState!.fields['password']!.value,
     };
-
   }
-
 }

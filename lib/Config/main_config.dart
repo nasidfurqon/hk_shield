@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hk_shield/App/modules/ProdukTidakSesuai/pts_page.dart';
+
 import '../App/data/models/menu_model.dart';
 
-class PageNameData{
+class PageNameData {
   static final List<Widget> pages = [
     const Center(child: Text('Home Page')),
     const Center(child: Text('Knowledge Page')),
@@ -12,8 +13,8 @@ class PageNameData{
   ];
 }
 
-
-class QuickMenuData{
+// ini kalo data configan gni masukin ke folder feature/modulnya biar nyarinya ga susah
+class QuickMenuData {
   static List<MenuItemModel> generateMenu = [
     MenuItemModel(
         label: 'Dashboard',

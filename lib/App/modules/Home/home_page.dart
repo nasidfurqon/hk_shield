@@ -20,15 +20,11 @@ class _HomePageState extends State<HomePage> {
     DropdownItem(id: 2, label: 'nasid')
   ];
 
-  // FIXME: Lihat TODO 5(DONE)
-
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
       isLeading: false,
-      // TODO 7: Penamaan atribut icon1 dan iconEnd lebih baik diganti dengan lebih deskriptif(DONE)
-      // CONTOH iconStart dan iconEnd
       iconEnd: BootstrapIcons.hand_index_thumb,
       bottomNavBar: BottomNavigationBar(
         backgroundColor: Color(0xFF0A47A9),
@@ -42,6 +38,7 @@ class _HomePageState extends State<HomePage> {
           });
         },
         items: const [
+          // TODO: ini diconfig aja
           BottomNavigationBarItem(
             icon: Icon(BootstrapIcons.house),
             label: 'Home',
@@ -67,6 +64,7 @@ class _HomePageState extends State<HomePage> {
       children: SingleChildScrollView(
         child: Column(
           children: [
+            // kalo isinya cuman child pake sizedbox aja jangan container
             Container(
               child: Stack(children: [
                 Image.asset(
@@ -148,6 +146,7 @@ class _HomePageState extends State<HomePage> {
                         isHome: true,
                         icon: BootstrapIcons.building,
                         validatorLabel: 'input data'),
+                    // TODO: ini dropdown juga coba pake dummy api dari jsonplaceholder ya buat cobain fetching api ke dropdown
                     CustomDropdown(
                         hint: 'Proyek',
                         items: coba,

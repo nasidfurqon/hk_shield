@@ -1,3 +1,5 @@
+// TODO: ini response model juga jangan jadi patokan ikutin response model yg di repo ya
+// semua nanti bakal tergantung BEnya gmna, kalau ternyata BE punya standar sendiri harus diikutin nanti
 class ResponseModel {
   final bool? success;
   final int? status;
@@ -20,8 +22,7 @@ class ResponseModel {
     );
   }
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         'success': success,
         'status': success,
         'message': message,

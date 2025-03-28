@@ -28,210 +28,199 @@ class _ProdukTidakSesuaiPageState extends State<ProdukTidakSesuaiPage> {
         padding: EdgeInsets.all(16),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xff224596),
-            minimumSize: Size(double.infinity, 50)
-          ),
+              backgroundColor: Color(0xff224596),
+              minimumSize: Size(double.infinity, 50)),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> AddProdukTidakSesuaiPage()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => AddProdukTidakSesuaiPage()));
           },
           child: Text(
-              '+ Produk Tidak Sesuai',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.white
-            ),
+            '+ Produk Tidak Sesuai',
+            style: TextStyle(fontSize: 16, color: Colors.white),
           ),
         ),
       ),
       children: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 18),
-          child: Column(
+        padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 18),
+        child: Column(
+          children: [
+            _buildListMenuButton(),
+            20.gH,
+            Column(
+              // TODO: ini jangan make looping for buat generate widget, ga bagus buat performa, make listview.builder atau listview.separated aja
+              children: _buildCard(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildButton(String text, bool isActive) {
+    return Container(
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+        decoration: BoxDecoration(
+            color: isActive ? Color(0xff224596) : Color(0xffF0F2FC),
+            borderRadius: BorderRadius.circular(15)),
+        child: Text(
+          text,
+          style: TextStyle(
+              fontSize: 16, color: isActive ? Colors.white : Colors.black),
+        ));
+  }
+
+  Widget _buildListMenuButton() {
+    return Row(
+        children: List.generate(label.length, (index) {
+      bool isActive = _selected == index;
+      return Padding(
+        padding: EdgeInsets.symmetric(horizontal: 5),
+        child: _buildButton(label[index], isActive),
+      );
+    }));
+  }
+
+  List<Widget> _buildCard() {
+    List<Widget> listPts = [];
+    for (int index = 0;
+        index < ProdukTidakSesuaiModel.buildPTSData.length;
+        index++) {
+      final pts = ProdukTidakSesuaiModel.buildPTSData[index];
+      listPts.add(GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => DetailProdukTidakSesuai(
+                        id: index,
+                      )));
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey, width: 0.5),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          padding: EdgeInsets.all(16),
+          width: double.infinity,
+          child: Row(
             children: [
-              _buildListMenuButton(),
-              20.gH,
               Column(
-                children: _buildCard(),
+                children: [
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: SizedBox(
+                          width: 120,
+                          height: 120,
+                          child: AspectRatio(
+                            aspectRatio: 1,
+                            child: Image.asset(
+                              pts['image'],
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 120,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              pts['Status']
+                                  ? Color(0xffFEB5B00)
+                                  : Color(0xff98D2C0),
+                              Colors.transparent,
+                            ],
+                          ),
+                        ),
+                      ),
+                      SafeArea(
+                          child: Text(
+                        _parseStatus(pts['Status']),
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      )),
+                    ],
+                  ),
+                  5.gH,
+                  Container(
+                    padding: EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                        color: Color(0xffF5F6FA),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Text(
+                      pts['Nomor'],
+                    ),
+                  )
+                ],
+              ),
+              20.gW,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        pts['Tanggal'],
+                        style: TextStyle(color: Colors.black26),
+                      ),
+                      7.gH,
+                      Text(
+                        pts['Nama'],
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      7.gH,
+                      Text(pts['Pekerjaan']),
+                      7.gH,
+                      Text(
+                        pts['Penyebab'],
+                        style: TextStyle(color: Colors.black26),
+                      )
+                    ],
+                  ),
+                  6.gW,
+                  Container(
+                    padding: EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                        color: pts['Status']
+                            ? Color(0xffD3E671)
+                            : Color(0xffF37199),
+                        borderRadius: BorderRadius.circular(5)),
+                    width: 52,
+                    child: Text(
+                      textAlign: TextAlign.center,
+                      pts['Kriteria'],
+                      style: TextStyle(
+                          color: pts['Status']
+                              ? Color(0xff0D4715)
+                              : Color(0xffA31D1D)),
+                    ),
+                  )
+                ],
               ),
             ],
           ),
         ),
-    );
-  }
-
-  Widget _buildButton(String text, bool isActive){
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-      decoration: BoxDecoration(
-        color: isActive ? Color(0xff224596) : Color(0xffF0F2FC),
-        borderRadius: BorderRadius.circular(15)
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 16,
-          color: isActive? Colors.white : Colors.black
-        ),
-      )
-    );
-  }
-  Widget _buildListMenuButton(){
-    return Row(
-      children: List.generate(label.length, (index){
-        bool isActive = _selected == index;
-        return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5),
-          child: _buildButton(label[index], isActive),
-        );
-      })
-    );
-  }
-
-  List<Widget> _buildCard(){
-    List<Widget> listPts = [];
-    for(int index = 0; index < ProdukTidakSesuaiModel.buildPTSData.length; index++){
-      final pts = ProdukTidakSesuaiModel.buildPTSData[index];
-      listPts.add(
-        GestureDetector(
-          onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailProdukTidakSesuai(id: index,)));
-          },
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey,
-                width: 0.5
-              ),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            padding: EdgeInsets.all(16),
-            width: double.infinity,
-            child: Row(
-              children: [
-                Column(
-                  children: [
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: SizedBox(
-                            width: 120,
-                            height: 120,
-                            child: AspectRatio(
-                              aspectRatio: 1,
-                              child: Image.asset(
-                                  pts['image'],
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                        Container(
-                          width: 120,
-                          height: 120,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            gradient: LinearGradient(
-                              begin: Alignment.centerLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                pts['Status'] ? Color(0xffFEB5B00): Color(0xff98D2C0),
-                                Colors.transparent,
-                              ],
-                            ),
-                          ),
-                        ),
-                        SafeArea(
-                          child: Text(
-                            _parseStatus(pts['Status']),
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white
-                            ),
-                          )
-                        ),
-                      ],
-                    ),
-                    5.gH,
-                    Container(
-                      padding: EdgeInsets.all(2),
-                      decoration: BoxDecoration(
-                        color: Color(0xffF5F6FA),
-                        borderRadius: BorderRadius.circular(10)
-                      ),
-                      child: Text(
-                        pts['Nomor'],
-                      ),
-                    )
-                  ],
-                ),
-                20.gW,
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          pts['Tanggal'],
-                            style: TextStyle(
-                              color: Colors.black26
-                            ),
-                        ),
-                        7.gH,
-                        Text(
-                          pts['Nama'],
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        7.gH,
-                        Text(
-                          pts['Pekerjaan']
-                        ),
-                        7.gH,
-                        Text(
-                          pts['Penyebab'],
-                          style: TextStyle(
-                              color: Colors.black26
-                          ),
-                        )
-                      ],
-                    ),
-                    6.gW,
-                    Container(
-                      padding: EdgeInsets.all(2),
-                      decoration: BoxDecoration(
-                        color: pts['Status'] ? Color(0xffD3E671) : Color(0xffF37199),
-                        borderRadius: BorderRadius.circular(5)
-                      ),
-                      width: 52,
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        pts['Kriteria'],
-                        style: TextStyle(
-                          color: pts['Status']? Color(0xff0D4715) :  Color(0xffA31D1D)
-                        ),
-                      ),
-                    )
-
-                  ],
-                ),
-              ],
-            ),
-          ),
-        )
-      );
-      listPts.add(const SizedBox(height: 12,));
+      ));
+      listPts.add(const SizedBox(
+        height: 12,
+      ));
     }
     return listPts;
   }
 
-  static String _parseStatus(bool status){
-    if(status == true){
+  static String _parseStatus(bool status) {
+    if (status == true) {
       return 'Proses';
-    }
-    else{
+    } else {
       return 'Close';
     }
   }

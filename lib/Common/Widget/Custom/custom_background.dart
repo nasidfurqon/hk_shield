@@ -4,7 +4,7 @@ import 'package:hk_shield/Common/Extensions/media_query_extension.dart';
 class CustomBackground extends StatefulWidget {
   final Widget? child;
   final String imagePath;
-  const CustomBackground({super.key, this.child,required this.imagePath});
+  const CustomBackground({super.key, this.child, required this.imagePath});
 
   @override
   State<CustomBackground> createState() => _CustomBackground();
@@ -33,12 +33,7 @@ class _CustomBackground extends State<CustomBackground> {
             //   padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Container(
               margin: EdgeInsets.only(
-                  // TODO 1: ini MediaQuery better dibuat extension function dari BuildContext, karena akan sering dipaka (DONE)
-                  // EXAMPLE: context.screenWidth
-                  // REF: https://dart.dev/language/extension-methods
-                  top: context.screenHeight * 0.35,
-                  left: 30,
-                  right: 30),
+                  top: context.screenHeight * 0.35, left: 30, right: 30),
               child: widget.child,
             ),
             // ),

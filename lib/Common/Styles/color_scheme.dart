@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// TODO: ini udah dibikin colorscheme tapi gapernah dipake kan?
 class HKColorScheme {
   static const Color primary = Color(0xff1749FA);
   static const Color primaryLight = Color.fromARGB(255, 194, 225, 254);

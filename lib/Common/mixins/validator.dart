@@ -1,6 +1,8 @@
-
 import '../enums.dart';
 
+// TODO: ini validator mau dipake buat apa?
+// Duality, dari sisi library formbuilder tu udah ada formbuildervalidation
+// kalo mau ttp ada ya jangan jadiin mixin, buat jadiin helper aja
 mixin ValidationMixin {
   final passwordRegEx = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
 
@@ -87,7 +89,7 @@ mixin ValidationMixin {
                 !emailRegEx.hasMatch(element['controller'].text)) {
               isValid = false;
             }
-          }  else if (element['type'] == FormType.text) {
+          } else if (element['type'] == FormType.text) {
             if (!element['controller'].text.isNotEmpty) {
               isValid = false;
             }
