@@ -1,12 +1,12 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:hk_shield/App/data/models/pts_model.dart';
-import 'package:hk_shield/App/modules/ProdukTidakSesuai/add_pts_page.dart';
-import 'package:hk_shield/App/modules/ProdukTidakSesuai/detail_pts_page.dart';
+import 'package:hk_shield/App/modules/presentations/ProdukTidakSesuai/detail_pts_page.dart';
 import 'package:hk_shield/Common/Extensions/gaps_extension.dart';
 import 'package:hk_shield/Common/Widget/Custom/custom_scaffold.dart';
 
-import '../../../Common/Styles/color_scheme.dart';
+import '../../../../Common/Styles/color_scheme.dart';
+import 'add_pts_page.dart';
 
 class ProdukTidakSesuaiPage extends StatefulWidget {
   const ProdukTidakSesuaiPage({super.key});

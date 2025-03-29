@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hk_shield/App/modules/Auth/Controller/action_controller.dart';
-import 'package:hk_shield/App/modules/Home/home_page.dart';
+import 'package:hk_shield/App/modules/presentations/Auth/Controller/action_controller.dart';
 import 'package:hk_shield/Common/Extensions/gaps_extension.dart';
 import 'package:hk_shield/Common/Widget/Custom/custom_background.dart';
 import 'package:hk_shield/Common/Widget/Form/text_field.dart';
 
-import '../../../Common/Styles/color_scheme.dart';
+import '../../../../Common/Styles/color_scheme.dart';
+import '../Home/home_page.dart';
 
 class LoginPage extends GetView<AuthFormController> {
   LoginPage({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class LoginPage extends GetView<AuthFormController> {
                 icon: Icons.account_circle_outlined,
                 size: 30,
               ),
-              // TODO: kalo spacingnya sama satu widget make atribut spacing dari Column/Rownya aja
+              // TODO: kalo spacingnya sama satu widget make atribut spacing dari Column/Rownya aja [DONE]
               CustomTextField(
                 label: "Password",
                 hint: "Password",

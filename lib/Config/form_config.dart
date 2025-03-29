@@ -3,31 +3,37 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:hk_shield/Common/mixins/validator.dart';
 
 import '../App/data/models/form_model.dart';
-import '../Common/enums.dart';
+import '../Common/Widget/Enums/form_type.dart';
 import 'controller_config.dart';
 
-// TODO: ini mixin dipake buat apa?
+// TODO: ini mixin dipake buat apa? [DONE]
 // kalo ga kepake hapus aja
-class FormConfig with ValidationMixin {
-  List<FormModel> loginForm = [
-    FormModel(
-        formType: FormType.text,
-        controller: ControllerConfig.usernameController,
-        label: 'Username',
-        hint: 'Username',
-        icon: Icons.account_circle_outlined,
-        validator: FormBuilderValidators.compose([
-          FormBuilderValidators.required(errorText: "Username is required"),
-        ])),
-    FormModel(
-      formType: FormType.password,
-      controller: ControllerConfig.passwordController,
-      label: 'Password',
-      hint: 'Enter your password',
-      icon: Icons.lock_outline,
-      validator: FormBuilderValidators.compose([
-        FormBuilderValidators.required(errorText: "Password is required"),
-      ]),
-    ),
+class LoginConfig {
+  List<HKFormModel> loginForm = [
+    HKFormModel(
+        FormType.text,
+        'email',
+        FieldModifier(
+            controller: TextEditingController(),
+            icon: Icons.account_circle,
+            validator: FormBuilderValidators.compose([
+              FormBuilderValidators.required(),
+            ])),
+        FieldProps(
+            label: 'Email',
+            fieldType:  FieldType.filled)),
+    HKFormModel(
+        FormType.password,
+        'password',
+        FieldModifier(
+            controller: TextEditingController(),
+            icon: Icons.account_circle,
+            validator: FormBuilderValidators.compose([
+              FormBuilderValidators.password(),
+              FormBuilderValidators.required(),
+            ])),
+        FieldProps(
+            label: 'Password',
+            fieldType:  FieldType.filled))
   ];
 }

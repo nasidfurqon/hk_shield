@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -7,9 +8,9 @@ import 'package:hk_shield/Common/Extensions/gaps_extension.dart';
 import 'package:hk_shield/Common/Styles/color_scheme.dart';
 import 'package:hk_shield/Common/Widget/Custom/custom_snackbar.dart';
 import 'package:hk_shield/Common/Widget/Form/text_field.dart';
-import 'package:hk_shield/Common/mixins/validator.dart';
 
-import '../../enums.dart';
+import '../../Bloc/form_bloc.dart';
+import '../Enums/form_type.dart';
 import '../Custom/custom_button.dart';
 
 class HkFormBuilder extends StatelessWidget {
@@ -49,13 +50,7 @@ class HkFormBuilder extends StatelessWidget {
 class HKFormContainer extends StatefulWidget {
   final EdgeInsetsGeometry? margin;
   final EdgeInsetsGeometry? padding;
-  final FormAction action;
-  // TODO: ini dibuat beda2 action fungsinya untuk apa?
-  // Next update/pengerjaan coba jangan lihat repo referensinya ya, kalo mau cari referensi ambil di medium/github aja biar ga ke kotak kotak/terpaku cuman di repo referensi aja
-
-  final void Function(GlobalKey<FormBuilderState>)? onCreate;
-  final void Function(GlobalKey<FormBuilderState>)? onUpdate;
-  final void Function(GlobalKey<FormBuilderState>)? onRead;
+  final HKFormEvent Function(GlobalKey<FormBuilderState>)? formEvent;
   final List<dynamic> config;
   final String buttonText;
   final IconData? icon;
@@ -63,10 +58,7 @@ class HKFormContainer extends StatefulWidget {
     super.key,
     this.margin,
     this.padding,
-    required this.action,
-    this.onCreate,
-    this.onUpdate,
-    this.onRead,
+    this.formEvent,
     required this.config,
     required this.buttonText,
     this.icon,
@@ -76,62 +68,81 @@ class HKFormContainer extends StatefulWidget {
   State<HKFormContainer> createState() => _HKFormContainerState();
 }
 
-class _HKFormContainerState extends State<HKFormContainer>
-    with ValidationMixin {
+class _HKFormContainerState extends State<HKFormContainer> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
+  Map<String, TextEditingController> controllers = {};
+  final loadingState = false.obs;
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Container(
-          margin: widget.margin,
-          padding: widget.padding,
-          child: FormBuilder(
-            key: _formKey,
-            child: Column(children: [
-              ...widget.config.map((e) => HkFormBuilder(
-                  formType: e.formType,
-                  hint: e.hint,
-                  icon: e.icon,
-                  label: e.label,
-                  obscureText: e.obscureText)),
-              RsButton(
-                  radius: 12.w,
-                  width: Get.width,
-                  buttonColor: HKColorScheme.primary,
-                  splashColor: HKColorScheme.secondary,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(widget.buttonText,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                              fontSize: 14.sp,
-                            )),
-                        10.gW,
-                        Icon(
-                          widget.icon,
-                          color: Colors.white,
-                        )
-                      ]),
-                  onTap: () {
-                    if (_formKey.currentState != null &&
-                        _formKey.currentState!.saveAndValidate()) {
-                      print("FORM VALID");
-                      if (widget.action == FormAction.create) {
-                        widget.onCreate!(_formKey);
-                      } else if (widget.action == FormAction.update) {
-                        widget.onUpdate!(_formKey);
-                      } else if (widget.action == FormAction.read) {
-                        widget.onRead!(_formKey);
+    return BlocProvider(
+      create: (context) => HKFormBloc(),
+      child: BlocConsumer<HKFormBloc, HKFormState>(
+        listener: (context, state) {
+          if (state is HKFormLoading) {
+            loadingState.value = true;
+          } else {
+            loadingState.value = false;
+
+            if (state is HKFormSuccess) {
+              HKToast.show('Success', state.message);
+            } else if (state is HKFormFailure) {
+              HKToast.show('Error', state.error);
+            }
+          }
+        },
+        builder: (context, state) {
+          return Obx(() => Container(
+            margin: widget.margin,
+            padding: widget.padding,
+            child: FormBuilder(
+              key: _formKey,
+              child: Column(children: [
+                ...widget.config.map((e) => HkFormBuilder(
+                    formType: e.formType,
+                    hint: e.hint,
+                    icon: e.icon,
+                    label: e.label,
+                    obscureText: e.obscureText)),
+                RsButton(
+                    radius: 12.w,
+                    width: Get.width,
+                    buttonColor: HKColorScheme.primary,
+                    splashColor: HKColorScheme.secondary,
+                    child: loadingState.value
+                        ? CircularProgressIndicator(color: Colors.white)
+                        : Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(widget.buttonText,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                                fontSize: 14.sp,
+                              )),
+                          10.gW,
+                          Icon(
+                            widget.icon,
+                            color: Colors.white,
+                          )
+                        ]),
+                    onTap: () {
+                      if (_formKey.currentState != null &&
+                          _formKey.currentState!.saveAndValidate()) {
+                        if (widget.formEvent != null) {
+                          final formEvent = widget.formEvent!(_formKey);
+                          context.read<HKFormBloc>().add(formEvent);
+                        }
+                      } else {
+                        HKToast.show(
+                            'Warning', 'There are some invalid fields');
                       }
-                    } else {
-                      HKToast.show(
-                          'Warning ⚠️', 'There are some invalid fields');
-                    }
-                  })
-            ]),
-          ),
-        ));
+                    })
+              ]),
+            ),
+          ));
+        },
+      ),
+    );
   }
 }

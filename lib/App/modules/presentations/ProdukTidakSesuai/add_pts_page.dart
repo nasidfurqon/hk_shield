@@ -7,8 +7,7 @@ import 'package:hk_shield/Common/Widget/Form/custom_imagePicker.dart';
 import 'package:hk_shield/Common/Widget/Form/custom_radioButton.dart';
 import 'package:hk_shield/Common/Widget/Form/text_field.dart';
 
-import '../../data/models/dropdown_model.dart';
-
+import '../../../data/models/dropdown_model.dart';
 class AddProdukTidakSesuaiPage extends StatefulWidget {
   const AddProdukTidakSesuaiPage({super.key});
 
@@ -150,7 +149,7 @@ class _AddProdukTidakSesuaiPageState extends State<AddProdukTidakSesuaiPage> {
                 ),
               ),
               15.gH,
-              CustomTextFieldWithLabel(
+              CustomTextField(
                   controller: TextEditingController(),
                   label: 'Deksripsi Temuan',
                   hint: "Isi Deskripsi Temuan...")

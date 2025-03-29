@@ -1,12 +1,12 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import "package:flutter/material.dart";
 import "package:hk_shield/App/data/models/dropdown_model.dart";
-import "package:hk_shield/App/modules/Home/quick_menu.dart";
+import "package:hk_shield/App/modules/presentations/Home/quick_menu.dart";
 import "package:hk_shield/Common/Styles/color_scheme.dart";
 import "package:hk_shield/Common/Widget/Form/custom_dropdown.dart";
 
-import "../../../Common/Widget/Custom/custom_carousel.dart";
-import "../../../Common/Widget/Custom/custom_scaffold.dart";
+import "../../../../Common/Widget/Custom/custom_carousel.dart";
+import "../../../../Common/Widget/Custom/custom_scaffold.dart";
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

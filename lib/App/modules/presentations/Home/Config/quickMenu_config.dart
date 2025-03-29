@@ -1,4 +1,4 @@
-import '../../../data/models/menu_model.dart';
+import '../../../../data/models/menu_model.dart';
 import '../../ProdukTidakSesuai/pts_page.dart';
 
 class QuickMenuData {
