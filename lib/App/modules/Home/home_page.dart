@@ -2,6 +2,7 @@ import 'package:bootstrap_icons/bootstrap_icons.dart';
 import "package:flutter/material.dart";
 import "package:hk_shield/App/data/models/dropdown_model.dart";
 import "package:hk_shield/App/modules/Home/quick_menu.dart";
+import "package:hk_shield/Common/Styles/color_scheme.dart";
 import "package:hk_shield/Common/Widget/Form/custom_dropdown.dart";
 
 import "../../../Common/Widget/Custom/custom_carousel.dart";
@@ -27,7 +28,7 @@ class _HomePageState extends State<HomePage> {
       isLeading: false,
       iconEnd: BootstrapIcons.hand_index_thumb,
       bottomNavBar: BottomNavigationBar(
-        backgroundColor: Color(0xFF0A47A9),
+        backgroundColor: HKColorScheme.primary,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white70,
         currentIndex: _selectedIndex,
@@ -64,8 +65,8 @@ class _HomePageState extends State<HomePage> {
       children: SingleChildScrollView(
         child: Column(
           children: [
-            // kalo isinya cuman child pake sizedbox aja jangan container
-            Container(
+            // kalo isinya cuman child pake sizedbox aja jangan container [DONE]
+            SizedBox(
               child: Stack(children: [
                 Image.asset(
                   'assets/bg_user.png',

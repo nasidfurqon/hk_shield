@@ -7,6 +7,8 @@ import 'package:hk_shield/Common/Widget/Custom/custom_container.dart';
 import 'package:hk_shield/Common/Widget/Custom/custom_scaffold.dart';
 import 'package:hk_shield/Common/Widget/Custom/custom_text.dart';
 
+import '../../../Common/Styles/color_scheme.dart';
+
 class DetailProdukTidakSesuai extends StatefulWidget {
   final int id;
   const DetailProdukTidakSesuai({super.key, required this.id});
@@ -32,7 +34,7 @@ class _DetailProdukTidakSesuaiState extends State<DetailProdukTidakSesuai> {
         child: ElevatedButton(
             onPressed: (){},
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xff224596),
+              backgroundColor: HKColorScheme.primary,
               minimumSize: Size(double.infinity, 50)
             ),
             child: Text(
@@ -50,7 +52,7 @@ class _DetailProdukTidakSesuaiState extends State<DetailProdukTidakSesuai> {
           children: [
             Stack(
               children: [
-                Image.asset(produk['image'], fit: BoxFit.cover,),
+                Image.asset(produk['Image'], fit: BoxFit.cover,),
                 SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -74,8 +76,8 @@ class _DetailProdukTidakSesuaiState extends State<DetailProdukTidakSesuai> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomContainer(
-                      title: 'Tanggal Pemeriksaan ${produk['Tanggal']}',
-                      titleColor: Color(0xff224596),
+                      title: 'Tanggal Pemeriksaan ${produk['Date']}',
+                      titleColor: HKColorScheme.primary,
                       backgroundColor: Color(0xffF0F2FC),
                       size: 16,
                       weight: FontWeight.bold,
@@ -86,7 +88,7 @@ class _DetailProdukTidakSesuaiState extends State<DetailProdukTidakSesuai> {
                   Row(
                     children: [
                       CustomContainer(
-                          title: '${produk['Kriteria']}',
+                          title: '${produk['Criteria']}',
                           titleColor: produk['Status']? Color(0xff0D4715) :  Color(0xffA31D1D),
                           backgroundColor: produk['Status'] ? Color(0xffD3E671) : Color(0xffF37199),
                           size: 12,
@@ -108,7 +110,7 @@ class _DetailProdukTidakSesuaiState extends State<DetailProdukTidakSesuai> {
                   ),
                   15.gH,
                   Text(
-                    produk['Nama'],
+                    produk['Date'],
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold
@@ -121,7 +123,7 @@ class _DetailProdukTidakSesuaiState extends State<DetailProdukTidakSesuai> {
                         BootstrapIcons.geo_alt_fill
                       ),
                       Text(
-                        produk['Kota'],
+                        produk['City'],
                         style: TextStyle(
                           fontSize: 14
                         ),
@@ -130,13 +132,13 @@ class _DetailProdukTidakSesuaiState extends State<DetailProdukTidakSesuai> {
                   ),
                   20.gH,
                   // kalau yg reptisi gni bikin configan aja nanti map ke widget
-                  CustomText(label: 'Deskripsi', text: produk['Deskripsi'], divider: true,),
+                  CustomText(label: 'Description', text: produk['Description'], divider: true,),
                   10.gH,
-                  CustomText(label: 'Jenis Pekerjaan', text: produk['jenisPekerjaan'], divider: true,),
+                  CustomText(label: 'Jenis Pekerjaan', text: produk['Type'], divider: true,),
                   10.gH,
-                  CustomText(label: 'Item Pekerjaan', text: produk['itemPekerjaan'], divider: true,),
+                  CustomText(label: 'Item Pekerjaan', text: produk['Item'], divider: true,),
                   10.gH,
-                  CustomText(label: 'Penyebab', text: produk['Penyebab']),
+                  CustomText(label: 'Reason', text: produk['Reason']),
                 ],
               ),
             ),
@@ -152,7 +154,7 @@ class _DetailProdukTidakSesuaiState extends State<DetailProdukTidakSesuai> {
                     padding: const EdgeInsets.only(left: 5),
                     child: CustomContainer(
                       title: 'LOG AKTIVITAS',
-                      titleColor: Color(0xff224596),
+                      titleColor: HKColorScheme.primary,
                       backgroundColor: Color(0xffF0F2FC),
                       size: 16,
                       weight: FontWeight.bold,

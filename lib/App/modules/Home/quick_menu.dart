@@ -3,6 +3,7 @@ import 'package:hk_shield/Common/Extensions/gaps_extension.dart';
 import 'package:hk_shield/Common/Extensions/media_query_extension.dart';
 
 import '../../../Config/main_config.dart';
+import 'Config/quickMenu_config.dart';
 
 class QuickMenu extends StatefulWidget {
   const QuickMenu({super.key});

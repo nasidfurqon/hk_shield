@@ -6,6 +6,8 @@ import 'package:hk_shield/Common/Extensions/gaps_extension.dart';
 import 'package:hk_shield/Common/Widget/Custom/custom_background.dart';
 import 'package:hk_shield/Common/Widget/Form/text_field.dart';
 
+import '../../../Common/Styles/color_scheme.dart';
+
 class LoginPage extends GetView<AuthFormController> {
   LoginPage({Key? key}) : super(key: key);
   bool rememberUser = false;
@@ -15,10 +17,9 @@ class LoginPage extends GetView<AuthFormController> {
         imagePath: 'assets/background_auth.png',
         child: SingleChildScrollView(
           child: Column(
-            // TODO: Kayak gini buat spacing lebih konsisten, spacing extension dipake kalo spacingnya beda2
-            spacing: 0,
+            // TODO: Kayak gini buat spacing lebih konsisten, spacing extension dipake kalo spacingnya beda2[DONE]
+            spacing: 20,
             children: [
-              20.gH,
               // TODO 3: Ini untuk inputnya belum dibuat dalam bentuk config
               // FIXME: Coba buat untuk input/form fieldnya dalam bentuk config seperti pada contoh repo yang sudah diberikan
               CustomTextField(
@@ -28,7 +29,6 @@ class LoginPage extends GetView<AuthFormController> {
                 size: 30,
               ),
               // TODO: kalo spacingnya sama satu widget make atribut spacing dari Column/Rownya aja
-              20.gH,
               CustomTextField(
                 label: "Password",
                 hint: "Password",
@@ -36,7 +36,6 @@ class LoginPage extends GetView<AuthFormController> {
                 size: 30,
                 obscureText: true,
               ),
-              20.gH,
               Row(
                 children: [
                   Expanded(
@@ -53,7 +52,7 @@ class LoginPage extends GetView<AuthFormController> {
                           },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
-                          activeColor: Color(0xff1749FA)),
+                          activeColor: HKColorScheme.primary),
                       Text(
                         "Ingat saya",
                         style: TextStyle(fontSize: 16),
@@ -65,12 +64,11 @@ class LoginPage extends GetView<AuthFormController> {
                     style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xff1749FA),
+                        color: HKColorScheme.primary,
                         decoration: TextDecoration.underline),
                   ),
                 ],
               ),
-              20.gH,
               GestureDetector(
                   onTap: () {
                     // TODO: ini juga nanti diganti pake routing management sendiri kayak autoroute atau go route
@@ -84,7 +82,7 @@ class LoginPage extends GetView<AuthFormController> {
                           begin: Alignment.centerLeft,
                           end: Alignment(0.99, 1),
                           colors: <Color>[
-                            Color(0xff1749FA),
+                            HKColorScheme.primary,
                             Color(0xff0E2B94)
                           ]),
                       borderRadius: BorderRadius.circular(50),
