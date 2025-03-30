@@ -27,13 +27,13 @@ class FieldModifier{
 
   FieldModifier({
     this.validator,
-    this.controller,
+    TextEditingController? controller,
     this.icon,
     this.obscureText,
     this.onChanged,
     this.marginBottom,
     this.onSuccess,
-  });
+  }): controller = controller ?? TextEditingController();
 }
 
 class FieldProps {
@@ -64,17 +64,4 @@ class FieldProps {
     this.description,
     this.required,
   });
-}
-
-class FieldDependency {
-  final List<String> field;
-  final FieldVisibility visibility;
-
-  FieldDependency({required this.field, required this.visibility});
-}
-
-class FieldVisibility {
-  final bool Function(Map<String, TextEditingController>) validator;
-
-  FieldVisibility({required this.validator});
 }

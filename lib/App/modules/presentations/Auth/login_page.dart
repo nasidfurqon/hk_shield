@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hk_shield/App/modules/presentations/Auth/Controller/action_controller.dart';
 import 'package:hk_shield/Common/Extensions/gaps_extension.dart';
 import 'package:hk_shield/Common/Widget/Custom/custom_background.dart';
 import 'package:hk_shield/Common/Widget/Form/text_field.dart';
+import 'package:hk_shield/Config/form_config.dart';
 
+import '../../../../Common/Bloc/form_bloc.dart';
 import '../../../../Common/Styles/color_scheme.dart';
+import '../../../../Common/Widget/Form/form_builder.dart';
 import '../Home/home_page.dart';
 
-class LoginPage extends GetView<AuthFormController> {
+class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   bool rememberUser = false;
+
   @override
   Widget build(BuildContext context) {
     return CustomBackground(
@@ -22,19 +31,12 @@ class LoginPage extends GetView<AuthFormController> {
             children: [
               // TODO 3: Ini untuk inputnya belum dibuat dalam bentuk config
               // FIXME: Coba buat untuk input/form fieldnya dalam bentuk config seperti pada contoh repo yang sudah diberikan
-              CustomTextField(
-                label: "Username",
-                hint: "Username",
-                icon: Icons.account_circle_outlined,
-                size: 30,
-              ),
-              // TODO: kalo spacingnya sama satu widget make atribut spacing dari Column/Rownya aja [DONE]
-              CustomTextField(
-                label: "Password",
-                hint: "Password",
-                icon: Icons.lock_outline,
-                size: 30,
-                obscureText: true,
+              HKFormContainer(
+                margin: EdgeInsets.symmetric(horizontal: 24),
+                config: LoginConfig().loginForm,
+                buttonText: "Login",
+                icon: Icons.login,
+                formEvent: (formKey) => CreateHKFormEvent(formKey),
               ),
               Row(
                 children: [

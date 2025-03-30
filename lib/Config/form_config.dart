@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:hk_shield/Common/mixins/validator.dart';
 
 import '../App/data/models/form_model.dart';
 import '../Common/Widget/Enums/form_type.dart';
-import 'controller_config.dart';
 
 // TODO: ini mixin dipake buat apa? [DONE]
 // kalo ga kepake hapus aja

@@ -1,59 +1,116 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hk_shield/Common/Extensions/gaps_extension.dart';
+import 'package:hk_shield/Common/Extensions/media_query_extension.dart';
 import 'package:hk_shield/Common/Styles/color_scheme.dart';
 import 'package:hk_shield/Common/Widget/Custom/custom_snackbar.dart';
 import 'package:hk_shield/Common/Widget/Form/text_field.dart';
+import 'package:hk_shield/App/data/models/form_model.dart'; // Import your form model
 
 import '../../Bloc/form_bloc.dart';
 import '../Enums/form_type.dart';
 import '../Custom/custom_button.dart';
 
 class HkFormBuilder extends StatelessWidget {
-  final FormType? formType;
-  final String? hint;
-  final String? label;
-  final String? textField;
-  final IconData? icon;
-  final bool? obscureText;
+  final HKFormModel formModel;
+
   const HkFormBuilder({
     super.key,
-    this.hint,
-    this.label,
-    this.textField,
-    this.icon,
-    this.obscureText,
-    this.formType,
+    required this.formModel,
   });
 
   @override
   Widget build(BuildContext context) {
-    if (formType == FormType.text) {
-      return CustomTextField(hint: hint, label: label, icon: icon);
-    } else if (formType == FormType.password) {
-      return CustomTextField(
-        hint: hint,
-        label: label,
-        obscureText: obscureText,
-        icon: icon,
-      );
-    } else {
-      return const SizedBox();
+    final name = formModel.field;
+    final type = formModel.formType;
+    final modifier = formModel.modifier ?? FieldModifier(controller: TextEditingController());
+    final props = formModel.props;
+
+    print('NAME = $name, TYPE = $type, MODIFIER = $modifier, PROPS = $props');
+    return FormBuilderField<String>(
+      name: name,
+      initialValue: modifier.controller?.text.isNotEmpty == true ? modifier.controller!.text : " ",
+      validator: modifier.validator ?? (cek){
+      },
+      builder: (FormFieldState field) {
+        return InputDecorator(
+          decoration: InputDecoration(
+            errorText: field.errorText ?? '',
+            labelText: props.label ?? "default",
+            prefixIcon: modifier.icon != null ? Icon(modifier.icon) : null,
+            filled: props.fieldType == FieldType.filled,
+            border: _getBorder(props.fieldType ?? FieldType.filled),
+          ),
+          child: _buildFieldByType(type, field, modifier),
+        );
+      },
+    );
+  }
+
+  Widget _buildFieldByType(FormType type, FormFieldState field, FieldModifier modifier) {
+    switch (type) {
+      case FormType.text:
+        return TextFormField(
+          controller: modifier.controller,
+          onChanged: (value) {
+            if (value.isNotEmpty) {
+              field.didChange(value);
+            }
+          },
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: field.value as String? ?? "",
+          ),
+        );
+      case FormType.password:
+        return TextFormField(
+          controller: modifier.controller,
+          onChanged: (value) {
+            if (value.isNotEmpty) {
+              field.didChange(value);
+            }
+          },
+          obscureText: true,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText:field.value as String? ?? "",
+          ),
+        );
+      default:
+        return const SizedBox();
+    }
+  }
+
+  InputBorder? _getBorder(FieldType fieldType) {
+    switch (fieldType) {
+      case FieldType.outlined:
+        return OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.r),
+        );
+      case FieldType.filled:
+        return OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.r),
+          borderSide: BorderSide.none,
+        );
+      default:
+        return null;
     }
   }
 }
-
 class HKFormContainer extends StatefulWidget {
   final EdgeInsetsGeometry? margin;
   final EdgeInsetsGeometry? padding;
   final HKFormEvent Function(GlobalKey<FormBuilderState>)? formEvent;
-  final List<dynamic> config;
+  final List<HKFormModel> config;
   final String buttonText;
   final IconData? icon;
+
   const HKFormContainer({
     super.key,
     this.margin,
@@ -70,77 +127,33 @@ class HKFormContainer extends StatefulWidget {
 
 class _HKFormContainerState extends State<HKFormContainer> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
-  Map<String, TextEditingController> controllers = {};
-  final loadingState = false.obs;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HKFormBloc(),
-      child: BlocConsumer<HKFormBloc, HKFormState>(
+      child:
+      BlocConsumer<HKFormBloc, HKFormState>(
         listener: (context, state) {
-          if (state is HKFormLoading) {
-            loadingState.value = true;
-          } else {
-            loadingState.value = false;
-
-            if (state is HKFormSuccess) {
-              HKToast.show('Success', state.message);
-            } else if (state is HKFormFailure) {
-              HKToast.show('Error', state.error);
-            }
+          if (state is HKFormSuccess) {
+            HKToast.show('Success', state.message);
+          } else if (state is HKFormFailure) {
+            HKToast.show('Failed', state.error);
           }
         },
         builder: (context, state) {
-          return Obx(() => Container(
+          return Container(
             margin: widget.margin,
             padding: widget.padding,
             child: FormBuilder(
               key: _formKey,
-              child: Column(children: [
-                ...widget.config.map((e) => HkFormBuilder(
-                    formType: e.formType,
-                    hint: e.hint,
-                    icon: e.icon,
-                    label: e.label,
-                    obscureText: e.obscureText)),
-                RsButton(
-                    radius: 12.w,
-                    width: Get.width,
-                    buttonColor: HKColorScheme.primary,
-                    splashColor: HKColorScheme.secondary,
-                    child: loadingState.value
-                        ? CircularProgressIndicator(color: Colors.white)
-                        : Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(widget.buttonText,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white,
-                                fontSize: 14.sp,
-                              )),
-                          10.gW,
-                          Icon(
-                            widget.icon,
-                            color: Colors.white,
-                          )
-                        ]),
-                    onTap: () {
-                      if (_formKey.currentState != null &&
-                          _formKey.currentState!.saveAndValidate()) {
-                        if (widget.formEvent != null) {
-                          final formEvent = widget.formEvent!(_formKey);
-                          context.read<HKFormBloc>().add(formEvent);
-                        }
-                      } else {
-                        HKToast.show(
-                            'Warning', 'There are some invalid fields');
-                      }
-                    })
-              ]),
+              child: Column(
+                children: [
+                  ...widget.config.map((model) => HkFormBuilder(formModel: model)),
+                ],
+              ),
             ),
-          ));
+          );
         },
       ),
     );

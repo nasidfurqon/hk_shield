@@ -8,4 +8,4 @@ enum FormType {
 
 }
 
-enum FieldType {outline, filled, rounded}
+enum FieldType {outlined, filled, rounded}

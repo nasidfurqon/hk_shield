@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../Styles/color_scheme.dart';
 
-class RsButton extends StatelessWidget {
-  const RsButton({
+class HkButton extends StatelessWidget {
+  const HkButton({
     super.key,
     required this.child,
     required this.onTap,
