@@ -36,8 +36,7 @@ class HkFormBuilder extends StatelessWidget {
     return FormBuilderField<String>(
       name: name,
       initialValue: modifier.controller?.text.isNotEmpty == true ? modifier.controller!.text : " ",
-      validator: modifier.validator ?? (cek){
-      },
+      validator: modifier.validator,
       builder: (FormFieldState field) {
         return InputDecorator(
           decoration: InputDecoration(
