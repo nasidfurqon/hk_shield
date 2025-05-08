@@ -37,14 +37,17 @@ class HkFormBuilder extends StatelessWidget {
       initialValue: modifier.controller?.text.isNotEmpty == true ? modifier.controller!.text : " ",
       validator: modifier.validator,
       builder: (FormFieldState field) {
-        return InputDecorator(
-          decoration: InputDecoration(
-            errorText: field.errorText ?? '',
-            labelText: props.label ?? "",
-            prefixIcon: modifier.icon != null ? Icon(modifier.icon) : null,
-            border: _getBorder(modifier.fieldType!),
+        return Padding(
+          padding: EdgeInsets.symmetric(vertical: 10),
+          child: InputDecorator(
+            decoration: InputDecoration(
+              errorText: field.errorText,
+              labelText: props.label ?? "",
+              prefixIcon: modifier.icon != null ? Icon(modifier.icon) : null,
+              border: _getBorder(modifier.fieldType!),
+            ),
+            child: _buildFieldByType(type, field, modifier),
           ),
-          child: _buildFieldByType(type, field, modifier),
         );
       },
     );
