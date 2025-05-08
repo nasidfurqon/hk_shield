@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import '../../styles/color_scheme.dart';
 
 class HKToast {
@@ -12,22 +11,14 @@ class HKToast {
     required this.message,
   });
 
-  static show(String title, String message) {
-    Get.snackbar(
-      title,
-      message,
-      snackPosition: SnackPosition.TOP,
-      maxWidth: Get.width - 48.w,
-      margin: EdgeInsets.only(top: 24.w),
-      padding: EdgeInsets.symmetric(horizontal: 24.h, vertical: 10.h),
-      backgroundColor: Colors.white,
-      borderWidth: 1.w,
-      borderColor: HKColorScheme.primary,
-      colorText: HKColorScheme.text,
-      icon: SizedBox(
-        width: 40.w,
-        height: 40.w,
-      ),
+  static show(String title, String message, BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Column(
+        children: [
+          Text(title, style: TextStyle(fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
+          Text(message)
+        ],
+      ))
     );
   }
 }

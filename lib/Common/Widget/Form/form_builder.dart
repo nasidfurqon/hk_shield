@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:hk_shield/Common/Extensions/gaps_extension.dart';
 import 'package:hk_shield/Common/Extensions/media_query_extension.dart';
 import 'package:hk_shield/Common/Styles/color_scheme.dart';
@@ -135,9 +134,9 @@ class _HKFormContainerState extends State<HKFormContainer> {
       BlocConsumer<HKFormBloc, HKFormState>(
         listener: (context, state) {
           if (state is HKFormSuccess) {
-            HKToast.show('Success', state.message);
+            HKToast.show('Success', state.message, context);
           } else if (state is HKFormFailure) {
-            HKToast.show('Failed', state.error);
+            HKToast.show('Failed', state.error, context);
           }
         },
         builder: (context, state) {
