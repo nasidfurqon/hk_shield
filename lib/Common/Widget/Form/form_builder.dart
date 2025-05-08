@@ -40,9 +40,9 @@ class HkFormBuilder extends StatelessWidget {
         return InputDecorator(
           decoration: InputDecoration(
             errorText: field.errorText ?? '',
-            labelText: props.label ?? "default",
+            labelText: props.label ?? "",
             prefixIcon: modifier.icon != null ? Icon(modifier.icon) : null,
-            border: _getBorder(FieldType.outlined),
+            border: _getBorder(modifier.fieldType!),
           ),
           child: _buildFieldByType(type, field, modifier),
         );

@@ -16,6 +16,7 @@ class LoginConfig {
         FieldModifier(
             controller: TextEditingController(),
             icon: BootstrapIcons.person,
+            fieldType: FieldType.outlined,
             validator: FormBuilderValidators.compose([
               FormBuilderValidators.required(),
             ])),
@@ -28,6 +29,7 @@ class LoginConfig {
         FieldModifier(
             controller: TextEditingController(),
             icon: BootstrapIcons.lock,
+            fieldType: FieldType.outlined,
             validator: FormBuilderValidators.compose([
               FormBuilderValidators.password(),
               FormBuilderValidators.required(),

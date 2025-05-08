@@ -21,11 +21,13 @@ class FieldModifier{
   final TextEditingController? controller;
   final IconData? icon;
   final bool? obscureText;
+  final FieldType? fieldType;
   final void Function(dynamic)? onChanged;
   final void Function(dynamic)? onSuccess;
   final double? marginBottom;
 
   FieldModifier({
+    this.fieldType,
     this.validator,
     TextEditingController? controller,
     this.icon,
