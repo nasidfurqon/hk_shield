@@ -42,8 +42,7 @@ class HkFormBuilder extends StatelessWidget {
             errorText: field.errorText ?? '',
             labelText: props.label ?? "default",
             prefixIcon: modifier.icon != null ? Icon(modifier.icon) : null,
-            filled: props.fieldType == FieldType.filled,
-            border: _getBorder(props.fieldType ?? FieldType.filled),
+            border: _getBorder(FieldType.outlined),
           ),
           child: _buildFieldByType(type, field, modifier),
         );

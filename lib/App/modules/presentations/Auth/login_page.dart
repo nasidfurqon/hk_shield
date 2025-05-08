@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
             // TODO 3: Ini untuk inputnya belum dibuat dalam bentuk config
             // FIXME: Coba buat untuk input/form fieldnya dalam bentuk config seperti pada contoh repo yang sudah diberikan
             HKFormContainer(
-              margin: EdgeInsets.symmetric(horizontal: 24),
+              margin: EdgeInsets.symmetric(horizontal: 20),
               config: LoginConfig().loginForm,
               buttonText: "Login",
               icon: Icons.login,

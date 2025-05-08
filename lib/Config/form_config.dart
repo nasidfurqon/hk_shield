@@ -1,5 +1,7 @@
+import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 import '../App/data/models/form_model.dart';
 import '../Common/Widget/Enums/form_type.dart';
@@ -13,7 +15,7 @@ class LoginConfig {
         'email',
         FieldModifier(
             controller: TextEditingController(),
-            icon: Icons.account_circle,
+            icon: BootstrapIcons.person,
             validator: FormBuilderValidators.compose([
               FormBuilderValidators.required(),
             ])),
@@ -25,7 +27,7 @@ class LoginConfig {
         'password',
         FieldModifier(
             controller: TextEditingController(),
-            icon: Icons.account_circle,
+            icon: BootstrapIcons.lock,
             validator: FormBuilderValidators.compose([
               FormBuilderValidators.password(),
               FormBuilderValidators.required(),
